@@ -1,0 +1,49 @@
+/* -*-ePiX-*- */
+#include "epix.h"
+using namespace ePiX;
+
+const P LdY(0, 4);
+const P LdX(4, 0);
+
+std::string sfmt(const std::string& msg)
+{
+#ifdef SANSSERIF
+  return "$\\mathsf{"+msg+"}$";
+#else
+  return "$"+msg+"$";
+#endif
+}
+
+double ratio(2), rata(pow(ratio, 1.0/3)), ratb(pow(ratio, 2.0/3));
+
+P ptO(0,0), ptA(ratio,0), ptB(0,1), ptD(ptA + ptB);
+P pta(ratio + rata, 0), ptb(0, 1 + ratb);
+
+int main()
+{
+  picture(P(0, 0), P(pta.x1(), ptb.x2()), "3.26 x 2.26in");
+
+  begin();
+
+  rect(ptO, ptD);
+  line(ptA, ptB);
+
+  line(ptA, pta);
+  line(ptB, ptb);
+
+  line_style("- - - ");
+  line(pta, ptb);
+
+  label(ptA, -LdY, sfmt("A"), b);
+  label(pta, -LdY, "$a$", b);
+  label(ptO, -LdY, sfmt("O"), b);
+
+  label(ptB, -LdX, sfmt("B"), l);
+  label(ptb, -LdX, "$b$", l);
+
+  ddot(0.5*(ptA + ptB), -0.5*(LdX + LdY), sfmt("C"), bl);
+  label(ptD, 0.5*(LdX + LdY), sfmt("D"), tr);
+
+  tikz_format();
+  end();
+}

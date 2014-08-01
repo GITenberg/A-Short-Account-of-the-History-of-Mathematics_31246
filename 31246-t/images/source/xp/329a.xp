@@ -1,0 +1,71 @@
+/* -*-ePiX-*- */
+#include "epix.h"
+using namespace ePiX;
+
+const P LdY(0, 4);
+const P LdX(4, 0);
+
+std::string sfmt(const std::string& msg)
+{
+#ifdef SANSSERIF
+  return "$\\mathsf{"+msg+"}$";
+#else
+  return "$"+msg+"$";
+#endif
+}
+
+void ray(const P& tail, const P& head, double s)
+{
+  line(tail, tail + (1+0.01*s)*(head-tail));
+}
+
+const double K(0.5);
+
+const double X0(0.75);
+const double dX(-0.1);
+
+P f(double t)
+{
+  return P(1 + K*(1 + 2.5*t)*t, t);
+}
+
+int main()
+{
+  picture(P(0, 0), P(3,1), "4 x 2in");
+
+  begin();
+
+  P ptO(0,0), ptP(f(X0)), ptQ(f(X0+dX)), ptR(ptP.x1(), ptQ.x2());
+  P ptM(ptP.x1(), 0), ptN(ptQ.x1(), 0), ptx(3,0), pty(0,0.75);
+
+  Segment TP(f(X0), f(X0+0.0001));
+  P ptT(Segment(ptO, ptx)*TP);
+
+  plot(f, 0, 1, 40);
+
+  line(ptQ, ptR);
+  line(ptN, ptQ);
+  line(ptM, ptP);
+
+  line(ptO, pty);
+  line(ptO, ptx, 20);
+
+  ray(ptT, ptP, 35);
+
+  label(ptO, -LdY, sfmt("O"), b);
+  label(ptM, -LdY, sfmt("M"), b);
+  label(ptN, -LdY, sfmt("N"), b);
+  label(ptx, -LdY, "$x$", b);
+
+  label(ptT, -LdY, sfmt("T"), b);
+
+  label(pty, -LdX, "$y$", bl);
+
+  label(ptR,  LdX, sfmt("R"), r);
+  label(ptP,  LdY, sfmt("P"), tl);
+
+  label(ptQ, -1.5*LdY, sfmt("Q"), bl);
+
+  tikz_format();
+  end();
+}

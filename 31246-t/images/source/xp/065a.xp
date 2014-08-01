@@ -1,0 +1,33 @@
+/* -*-ePiX-*- */
+#include "epix.h"
+using namespace ePiX;
+
+const P LdY(0, 4);
+const P LdX(4, 0);
+
+const double g(0.5*(sqrt(5)-1));
+
+std::string sfmt(const std::string& msg)
+{
+#ifdef SANSSERIF
+  return "$\\mathsf{"+msg+"}$";
+#else
+  return "$"+msg+"$";
+#endif
+}
+
+int main()
+{
+  picture(P(0,0), P(1,1), "2 x 0.25in");
+
+  begin();
+
+  line(P(xmin(),0), P(xmax(),0), 10);
+
+  dot(P(0, 0), LdY, sfmt("A"), t);
+  dot(P(1, 0), LdY, sfmt("B"), t);
+  dot(P(g, 0), LdY, sfmt("H"), t);
+
+  tikz_format();
+  end();
+}

@@ -1,0 +1,64 @@
+/* -*-ePiX-*- */
+#include "epix.h"
+using namespace ePiX;
+
+const P LdY(0, 4);
+const P LdX(4, 0);
+
+std::string sfmt(const std::string& msg)
+{
+#ifdef SANSSERIF
+  return "$\\mathsf{"+msg+"}$";
+#else
+  return "$"+msg+"$";
+#endif
+}
+
+const double K(0.25);
+const double ht(1.5);
+
+const double X0(0.75);
+const double dX(0.05);
+
+P f(double t)
+{
+  return P(K*(1 + 2.5*t)*t, t);
+}
+
+P g(double t)
+{
+  return P(K*t, t);
+}
+
+int main()
+{
+  picture(P(0, 0), P(1,1), "3 x 2in");
+
+  begin();
+
+  P ptA(0,0), ptC(f(1)), ptD(g(1)), ptB(ptC - ptD);
+  P ptM(g(X0)), ptN(g(X0+dX)), ptP(f(X0)), ptQ(f(X0+dX)), ptR(ptP+ptN-ptM);
+
+  plot(f, 0, 1.125, 40);
+
+  quad(ptA, ptB, ptC, ptD);
+  quad(ptM, ptP, ptR, ptN);
+  line(ptQ, ptR);
+
+  label(ptA, -LdY, sfmt("A"), b);
+  label(ptB, -LdY, sfmt("B"), b);
+
+  label(ptM, -LdX, sfmt("M"), bl);
+  label(ptN, -LdX, sfmt("N"), tl);
+  label(ptD, -LdX, sfmt("D"), l);
+
+  label(ptC,  LdX, sfmt("C"), br);
+
+  label(ptR,  LdY, sfmt("R"), t);
+
+  label(ptP, -LdY, sfmt("P"), b);
+  label(ptQ, -LdY, sfmt("Q"), r);
+
+  tikz_format();
+  end();
+}

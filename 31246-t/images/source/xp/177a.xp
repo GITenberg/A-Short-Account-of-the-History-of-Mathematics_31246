@@ -1,0 +1,45 @@
+/* -*-ePiX-*- */
+#include "epix.h"
+using namespace ePiX;
+
+const P LdY(0, 4);
+const P LdX(4, 0);
+
+std::string sfmt(const std::string& msg)
+{
+#ifdef SANSSERIF
+  return "$\\mathsf{"+msg+"}$";
+#else
+  return "$"+msg+"$";
+#endif
+}
+
+const double dX(0.6);
+P ptA(dX, 1), ptB(dX, dX), ptC(1, dX), ptD(1,  1);
+P ptF( 1, 0), ptG(dX,  0), ptH(0,  1), ptK(0, dX);
+
+int main()
+{
+  picture(P(0, 0), P(1, 1), "2 x 2in");
+
+  begin();
+
+  rect(P(0,0), ptD);
+
+  line(ptA, ptG);
+  line(ptC, ptK);
+
+  label(ptA,  LdY, sfmt("A"), t);
+  label(ptD,  LdY, sfmt("D"), t);
+  label(ptH,  LdY, sfmt("H"), t);
+
+  label(ptF, -LdY, sfmt("F"), b);
+  label(ptG, -LdY, sfmt("G"), b);
+
+  label(ptK, -LdX, sfmt("K"), l);
+  label(ptC,  LdX, sfmt("C"), r);
+  label(ptB, -(LdX+LdY), sfmt("B"), bl);
+
+  tikz_format();
+  end();
+}

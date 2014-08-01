@@ -1,0 +1,65 @@
+/* -*-ePiX-*- */
+#include "epix.h"
+using namespace ePiX;
+
+const double dX(0.333);
+
+const P LdY(0, 4);
+const P LdX(4, 0);
+
+P f(double t)
+{
+  return polar(t*Csc(M_PI_2*t), M_PI_2*t);
+}
+
+std::string sfmt(const std::string& msg)
+{
+#ifdef SANSSERIF
+  return "$\\mathsf{"+msg+"}$";
+#else
+  return "$"+msg+"$";
+#endif
+}
+
+int main()
+{
+  picture(P(0,0), P(1,1), "2.5 x 2.5in");
+
+  begin();
+
+  rect(P(0, 0), P(1, 1));
+
+  arc(P(0,0), 1, 0, M_PI_2);
+
+  line(P(0,1-dX), P(1,1-dX));
+  line(P(0,0), cis(M_PI/3));
+
+  line_style("- - - ");
+  line(P(0,dX), f(dX));
+  line(P(0,0), cis(M_PI/6));
+
+  solid();
+
+  pen(2);
+  plot(f, 0.001, 1, 40);
+
+  label(P(0, 1-dX), -LdX, sfmt("M"), l);
+  label(P(0,   dX), -LdX, sfmt("M'"), l);
+
+  label(P(1, 1-dX),  LdX, sfmt("Q"), r);
+
+  label(P(1, 0), -LdY, sfmt("A"), b);
+  label(P(0, 0), -LdY, sfmt("O"), b);
+
+  label(P(0, 1),  LdY, sfmt("B"), t);
+  label(P(1, 1),  LdY, sfmt("C"), t);
+
+  label(cis(M_PI/3), LdY, sfmt("R"), tr);
+  label(cis(M_PI/6), 0.5*(LdX+LdY), sfmt("R'"), tr);
+
+  label(f(2*dX), -2*LdY, sfmt("P"),  b);
+  label(f(dX),  LdX, sfmt("P'"), br);
+
+  tikz_format();
+  end();
+}

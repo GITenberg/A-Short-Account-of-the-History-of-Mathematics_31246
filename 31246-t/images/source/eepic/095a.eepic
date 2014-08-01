@@ -1,0 +1,27 @@
+%% Generated from 095a.xp on Sat Nov 14 18:17:28 EST 2009 by
+%% ePiX-1.2.6
+%% 
+%%   Cartesian bounding box: [0,3.125] x [-1,1]
+%%   Actual size: 3.5 x 0.25in
+%%   Figure offset: left by 0in, down by 0in
+%% 
+%% usepackages tikz
+%% 
+\xdefinecolor{rgb_000000}{rgb}{0,0,0}%
+\begin{tikzpicture}[cap=round]
+\pgfsetlinewidth{0.4pt}
+\useasboundingbox (0in,0in) rectangle (3.5in,0.25in);
+\draw (-0.14in,0.125in)--(3.5in,0.125in);
+\pgftext[at={\pgfpoint{-0.14in}{0.180348in}}] {\makebox(0,0)[b]{\hbox{\color{rgb_000000}$\mathsf{L}$}}}
+\filldraw[color=rgb_000000] (-0.14in,0.125in) circle(0.0207555in);
+\pgftext[at={\pgfpoint{1.26in}{0.180348in}}] {\makebox(0,0)[b]{\hbox{\color{rgb_000000}$\mathsf{H}$}}}
+\filldraw[color=rgb_000000] (1.26in,0.125in) circle(0.0207555in);
+\pgftext[at={\pgfpoint{3.5in}{0.180348in}}] {\makebox(0,0)[b]{\hbox{\color{rgb_000000}$\mathsf{K}$}}}
+\filldraw[color=rgb_000000] (3.5in,0.125in) circle(0.0207555in);
+\pgftext[at={\pgfpoint{0.56in}{0.069652in}}] {\makebox(0,0)[t]{\hbox{\color{rgb_000000}$\mathsf{A}$}}}
+\filldraw[color=rgb_000000] (0.56in,0.125in) circle(0.0207555in);
+\pgftext[at={\pgfpoint{1.68in}{0.069652in}}] {\makebox(0,0)[t]{\hbox{\color{rgb_000000}$\mathsf{O}$}}}
+\filldraw[color=rgb_000000] (1.68in,0.125in) circle(0.0207555in);
+\pgftext[at={\pgfpoint{2.38in}{0.069652in}}] {\makebox(0,0)[t]{\hbox{\color{rgb_000000}$\mathsf{B}$}}}
+\filldraw[color=rgb_000000] (2.38in,0.125in) circle(0.0207555in);
+\end{tikzpicture}

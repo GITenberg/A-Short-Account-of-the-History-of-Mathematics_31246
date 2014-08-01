@@ -1,0 +1,42 @@
+/* -*-ePiX-*- */
+#include "epix.h"
+using namespace ePiX;
+
+const P LdY(0, 4);
+const P LdX(4, 0);
+
+std::string sfmt(const std::string& msg)
+{
+#ifdef SANSSERIF
+  return "$\\mathsf{"+msg+"}$";
+#else
+  return "$"+msg+"$";
+#endif
+}
+
+const double th(M_PI/6);
+const double rad(0.1);
+
+int main()
+{
+  picture(P(-1, -1), P(1,1), "2 x 2in");
+
+  begin();
+
+  P ptE(0,0), ptM(0, 1), ptMp(cis(M_PI_2-th)), ptT(Tan(th), 1);
+
+  circle(ptE, rad);
+  circle(ptE, 1);
+
+  triangle(ptE, ptM, ptT);
+
+  label(ptE, -2.5*LdY, sfmt("E"), b);
+
+  label(ptM,  LdY, sfmt("M"), t);
+  label(ptT,  LdY, sfmt("T"), t);
+
+  label(ptMp, LdX, sfmt("M'"), r);
+
+  tikz_format();
+  end();
+}

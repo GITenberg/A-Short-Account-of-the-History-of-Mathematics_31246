@@ -1,0 +1,51 @@
+/* -*-ePiX-*- */
+#include "epix.h"
+using namespace ePiX;
+
+const P LdY(0, 4);
+const P LdX(4, 0);
+
+const double rad(sqrt(0.5));
+const P ctr1( 0.5,0.5);
+const P ctr2(-0.5,0.5);
+
+std::string sfmt(const std::string& msg)
+{
+#ifdef SANSSERIF
+  return "$\\mathsf{"+msg+"}$";
+#else
+  return "$"+msg+"$";
+#endif
+}
+
+int main()
+{
+  picture(P(-1.25,0), P(1.25,1.25), "3.5 x 1.75in");
+
+  begin();
+
+  triangle(P(-1, 0), P(1, 0), P(0,1));
+
+  arc(P(0,0), 1, 0, M_PI);
+  arc(ctr2, rad, M_PI_4, 5*M_PI_4);
+
+  pen(2);
+
+  arc(P(0,0), 1, 0, M_PI_2);
+  arc(ctr1, rad, -M_PI_4, 3*M_PI_4);
+
+  label(P(-1, 0), -LdY, sfmt("B"), b);
+  label(P( 1, 0), -LdY, sfmt("C"), b);
+  label(P( 0, 0), -LdY, sfmt("O"), b);
+
+  label(P(0, 1),  2*LdY, sfmt("A"), t);
+
+  label(cis(M_PI_4), 0.5*(LdX+LdY), sfmt("E"), tr);
+  label(ctr1+polar(rad, M_PI_4), 0.5*(LdX+LdY), sfmt("D"), tr);
+
+  label(cis(3*M_PI_4), 0.5*(-LdX+LdY), sfmt("G"), tl);
+  label(ctr2+polar(rad, 3*M_PI_4), 0.5*(-LdX+LdY), sfmt("F"), tl);
+
+  tikz_format();
+  end();
+}

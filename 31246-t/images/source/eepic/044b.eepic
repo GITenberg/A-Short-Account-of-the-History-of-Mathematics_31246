@@ -1,0 +1,20 @@
+%% Generated from 044b.xp on Sat Nov 14 18:17:10 EST 2009 by
+%% ePiX-1.2.6
+%% 
+%%   Cartesian bounding box: [-1,1] x [0,1]
+%%   Actual size: 1.5 x 0.75in
+%%   Figure offset: left by 0in, down by 0in
+%% 
+%% usepackages tikz
+%% 
+\xdefinecolor{rgb_000000}{rgb}{0,0,0}%
+\begin{tikzpicture}[cap=round]
+\pgfsetlinewidth{0.4pt}
+\useasboundingbox (0in,0in) rectangle (1.5in,0.75in);
+\draw (0in,0in)--(1.5in,0in)--(0.975in,0.715454in)--(0in,0in)--cycle;
+\draw (0.975in,0.715454in)--(0.975in,0in);
+\pgftext[at={\pgfpoint{0.975in}{0.770802in}}] {\makebox(0,0)[b]{\hbox{\color{rgb_000000}$\mathsf{A}$}}}
+\pgftext[at={\pgfpoint{0in}{-0.055348in}}] {\makebox(0,0)[t]{\hbox{\color{rgb_000000}$\mathsf{B}$}}}
+\pgftext[at={\pgfpoint{0.975in}{-0.055348in}}] {\makebox(0,0)[t]{\hbox{\color{rgb_000000}$\mathsf{D}$}}}
+\pgftext[at={\pgfpoint{1.5in}{-0.055348in}}] {\makebox(0,0)[t]{\hbox{\color{rgb_000000}$\mathsf{C}$}}}
+\end{tikzpicture}

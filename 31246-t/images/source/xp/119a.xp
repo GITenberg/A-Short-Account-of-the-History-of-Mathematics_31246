@@ -1,0 +1,60 @@
+/* -*-ePiX-*- */
+#include "epix.h"
+using namespace ePiX;
+
+const P LdY(0, 4);
+const P LdX(4, 0);
+
+std::string sfmt(const std::string& msg)
+{
+#ifdef SANSSERIF
+  return "$\\mathsf{"+msg+"}$";
+#else
+  return "$"+msg+"$";
+#endif
+}
+
+const double wd(1);
+const double ht(0.15);
+const double th(0.6);
+
+P ptA(-wd, ht), ptB(wd, ht), ptC(-wd, -ht), ptD(wd, -ht);
+P ptE(cis(th)), ptH(cis(M_PI+th));
+P ptM(wd+2*ht), ptN(-(wd+2*ht));
+
+int main()
+{
+  picture(P(-1.5, -0.75), P(1.5, 0.75), "4 x 2in");
+
+  begin();
+
+  Segment EH(ptE, ptH);
+  P ptF(Segment(ptA, ptB)*EH), ptG(Segment(ptC, ptD)*EH);
+
+  line(ptA, ptB);
+  line(ptC, ptD);
+  line(ptE, ptH);
+
+  line(ptA, ptN);
+  line(ptC, ptN);
+
+  line(ptB, ptM);
+  line(ptD, ptM);
+
+  label(ptA,  LdY, sfmt("A"), t);
+  label(ptB,  LdY, sfmt("B"), t);
+  label(ptF,  LdY, sfmt("F"), t);
+
+  label(ptC, -LdY, sfmt("C"), b);
+  label(ptD, -LdY, sfmt("D"), b);
+  label(ptG, -LdY, sfmt("G"), b);
+
+  label(ptN, -LdX, sfmt("N"), l);
+  label(ptM,  LdX, sfmt("M"), r);
+
+  label(ptH, -LdY, sfmt("H"), b);
+  label(ptE,  LdX, sfmt("E"), r);
+
+  tikz_format();
+  end();
+}

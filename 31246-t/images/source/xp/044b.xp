@@ -1,0 +1,37 @@
+/* -*-ePiX-*- */
+#include "epix.h"
+using namespace ePiX;
+
+const double dX(0.3);
+const P LdY(0, 4);
+const P LdX(4, 0);
+
+const P vtx(dX, sqrt((1-dX)*(1+dX)));
+
+std::string sfmt(const std::string& msg)
+{
+#ifdef SANSSERIF
+  return "$\\mathsf{"+msg+"}$";
+#else
+  return "$"+msg+"$";
+#endif
+}
+
+int main()
+{
+  picture(P(-1,0), P(1,1), "1.5 x 0.75in");
+
+  begin();
+
+  triangle(P(-1,0), P(1,0), vtx);
+
+  line(vtx, P(dX,0));
+  label(vtx, LdY, sfmt("A"), t);
+
+  label(P(-1, 0),  -LdY, sfmt("B"), b);
+  label(P(dX, 0),  -LdY, sfmt("D"), b);
+  label(P( 1, 0),  -LdY, sfmt("C"), b);
+
+  tikz_format();
+  end();
+}

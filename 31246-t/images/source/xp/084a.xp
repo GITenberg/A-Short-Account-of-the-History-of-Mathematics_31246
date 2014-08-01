@@ -1,0 +1,60 @@
+/* -*-ePiX-*- */
+#include "epix.h"
+using namespace ePiX;
+
+const P LdY(0, 4);
+const P LdX(4, 0);
+
+std::string sfmt(const std::string& msg)
+{
+#ifdef SANSSERIF
+  return "$\\mathsf{"+msg+"}$";
+#else
+  return "$"+msg+"$";
+#endif
+}
+
+const double th(M_PI_2*(0.2));
+const double dM(Sin(th)); // distance to moon
+ 
+const P ptE(1,0); // Earth
+const P ptS(0,0); // Sun
+const P ptM(ptE + polar(dM, M_PI_2+th)); // moon
+
+void ray(const P& tail, const P& head, double s)
+{
+  line(tail, tail + (1+0.01*s)*(head-tail));
+}
+
+P ptF(0,1), ptG(0.5,1), ptH(1-Tan(th), 1);
+
+int main()
+{
+  picture(P(0,0), P(1,1), "3.5 x 3.5in");
+
+  begin();
+
+  rect(P(0,0), P(1,1));
+
+  arc(ptE,  1, M_PI_2, M_PI);
+  arc(ptE, dM, M_PI_2, M_PI);
+
+  line(ptE, ptF);
+  line(ptE, ptG);
+  line(ptE, ptH);
+
+  ray(ptS, ptM, 20);
+
+  label(ptS, -LdY, sfmt("S"), b);
+  label(ptE, -LdY, sfmt("E"), b);
+
+  label(ptF,  LdY, sfmt("F"), t);
+  label(ptG,  LdY, sfmt("G"), t);
+  label(ptH,  LdY, sfmt("H"), t);
+  label(P(1,1),  LdY, sfmt("A"), t);
+
+  label(ptM, 2*LdY, sfmt("M"), tr);
+
+  tikz_format();
+  end();
+}

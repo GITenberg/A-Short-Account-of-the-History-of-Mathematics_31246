@@ -1,0 +1,70 @@
+/* -*-ePiX-*- */
+#include "epix.h"
+using namespace ePiX;
+
+const P LdY(0, 4);
+const P LdX(4, 0);
+
+std::string sfmt(const std::string& msg)
+{
+#ifdef SANSSERIF
+  return "$\\mathsf{"+msg+"}$";
+#else
+  return "$"+msg+"$";
+#endif
+}
+
+P ptB(0,0), ptA(1,2), ptC(2.125,0);
+P ptH(0.5*(norm(ptA) + norm(ptC) + norm(ptA-ptC)), 0);
+
+int main()
+{
+  picture(P(0, -1), P(3, 2), "4.5 x 4.5in");
+
+  begin();
+
+  double thB(Atan2(ptA.x2(), ptA.x1()));
+  P tmp(ptA - ptC);
+  double thC(Atan2(tmp.x2(), tmp.x1()));
+
+  Segment BO(ptB, ptB+cis(0.5*thB)), CO(ptC, ptC+cis(0.5*(M_PI+thC)));
+
+  P ptO(BO*CO), ptD(ptO.x1());
+  P ptE(ptO - (ptO-ptC)%(ptA-ptC)), ptF(ptO - (ptO-ptB)%(ptA-ptB));
+
+  Segment CK(ptC, ptC - P(0,1)), OK(ptO, ptO + J(ptB - ptO));
+  P ptK(CK*OK), ptL(OK*Segment(ptB, ptD));
+
+  const double rad(norm(ptO - ptD));
+
+  triangle(ptA, ptB, ptC);
+  circle(ptO, rad);
+
+  line(ptO, ptB);
+  line(ptO, ptD);
+  line(ptC, ptH, 20);
+
+  line(ptO, ptK);
+  line(ptC, ptK);
+
+  line_style("- - - ");
+  line(ptO, ptF);
+
+  label(ptA,  LdY, sfmt("A"), t);
+  label(ptO, 0.5*(LdX+LdY), sfmt("O"), tr);
+
+  label(ptB, -LdY, sfmt("B"), b);
+  label(ptC, 2*LdX-LdY, sfmt("C"), b);
+  label(ptD, -LdY, sfmt("D"), b);
+
+  dot(ptH, -LdY, sfmt("H"), b);
+
+  label(ptE,  LdX, sfmt("E"), tr);
+  label(ptF, -LdX, sfmt("F"), tl);
+
+  label(ptK, -LdY, sfmt("K"), b);
+  label(ptL, -LdY, sfmt("L"), bl);
+
+  tikz_format();
+  end();
+}

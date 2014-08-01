@@ -1,0 +1,33 @@
+%% Generated from 046a.xp on Sun Nov 15 16:28:43 EST 2009 by
+%% ePiX-1.2.6
+%% 
+%%   Cartesian bounding box: [0,1] x [0,1]
+%%   Actual size: 2.5 x 2.5in
+%%   Figure offset: left by 0in, down by 0in
+%% 
+%% usepackages tikz
+%% 
+\xdefinecolor{rgb_000000}{rgb}{0,0,0}%
+\begin{tikzpicture}[cap=round]
+\pgfsetlinewidth{0.4pt}
+\useasboundingbox (0in,0in) rectangle (2.5in,2.5in);
+\draw (0in,0in)--(2.5in,0in)--(2.5in,2.5in)--(0in,2.5in)--(0in,0in)--cycle;
+\draw (0.416667in,0in)--(0.416667in,2.5in);
+\draw (0.833333in,0in)--(0.833333in,2.5in);
+\draw (1.25in,0in)--(1.25in,2.5in);
+\draw (1.66667in,0in)--(1.66667in,2.5in);
+\draw (2.08333in,0in)--(2.08333in,2.5in);
+\draw (0in,0.416667in)--(2.5in,0.416667in);
+\draw (0in,0.833333in)--(2.5in,0.833333in);
+\draw (0in,1.25in)--(2.5in,1.25in);
+\draw (0in,1.66667in)--(2.5in,1.66667in);
+\draw (0in,2.08333in)--(2.5in,2.08333in);
+\pgfsetlinewidth{2pt}
+\draw (0in,0in)--(2.0835in,0in)--(2.0835in,2.0835in)--
+  (0in,2.0835in)--(0in,0in)--cycle;
+\pgftext[at={\pgfpoint{-0.055348in}{2.0835in}}] {\makebox(0,0)[r]{\hbox{\color{rgb_000000}$\mathsf{A}$}}}
+\pgftext[at={\pgfpoint{2.0835in}{-0.055348in}}] {\makebox(0,0)[t]{\hbox{\color{rgb_000000}$\mathsf{C}$}}}
+\pgftext[at={\pgfpoint{0in}{2.55535in}}] {\makebox(0,0)[b]{\hbox{\color{rgb_000000}$\mathsf{H}$}}}
+\pgftext[at={\pgfpoint{2.5in}{-0.055348in}}] {\makebox(0,0)[t]{\hbox{\color{rgb_000000}$\mathsf{L}$}}}
+\pgftext[at={\pgfpoint{2.5in}{2.55535in}}] {\makebox(0,0)[b]{\hbox{\color{rgb_000000}$\mathsf{K}$}}}
+\end{tikzpicture}
